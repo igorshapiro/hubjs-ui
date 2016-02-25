@@ -1,6 +1,14 @@
-{{link-to 'Dead' 'services.service.messages.dead' }}
-{{link-to 'Processing' 'services.service.messages.processing' }}
-{{link-to 'Recurring' 'services.service.messages.recurring'}}
-<div>
-  {{outlet}}
+<div class="col-lg-9">
+  <div class="row">
+    <ul class="nav nav-tabs">
+      {{#each messageTypes as |msgType|}}
+        <li role="presentation" class={{if (eq msgType.type currentMessageType) 'active'}}>
+          {{link-to msgType.title 'services.service.messages' msgType.type }}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="row">
+    {{outlet}}
+  </div>
 </div>

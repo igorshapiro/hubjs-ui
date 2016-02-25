@@ -1,7 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
-  {{#each services as |svc|}}
-    <li role="service" class={{if (eq svc service) 'active'}}>
-      <a href="#" {{action 'selectService' svc}}>{{svc.name}}</a>
+  {{#each serviceOptions as |svc|}}
+    <li role="service" class={{if svc.active 'active'}}>
+      {{link-to svc.name 'services.service' svc.name }}
     </li>
   {{/each}}
 </ul>

@@ -9,9 +9,6 @@ export default Ember.Service.extend({
     var me = this
     $.getJSON('/api/v1/services')
       .then(_ => me.set('services', _.services))
+      .done()
   },
-
-  getDeadMessages(service, page, size) {
-    
-  }
 })
