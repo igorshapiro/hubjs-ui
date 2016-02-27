@@ -34,13 +34,13 @@ export default Ember.Controller.extend({
 
     deleteDeadMessage(msg) {
       return callAPI("DELETE",
-        `${this.serviceUrl()}/dead/${msg.messageId}`)
+        `${this.serviceUrl()}/dead/${msg.messageId || msg}`)
         .then(this.reloadMessages.bind(this))
     },
 
     reenqueueDeadMessage(msg) {
       return callAPI("PUT",
-        `${this.serviceUrl()}/dead/${msg.messageId}`)
+        `${this.serviceUrl()}/dead/${msg.messageId || msg}`)
         .then(this.reloadMessages.bind(this))
     },
   }
