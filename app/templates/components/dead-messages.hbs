@@ -16,9 +16,8 @@
         <td>{{moment-format msg.timestamp "lll"}}</td>
         <td>{{moment-format msg.killedAt "lll"}}</td>
         <td>
-          <a href="#" {{action 'delete'}}>
-            {{fa-icon 'trash'}}
-          </a>
+          <a href="#" {{action onDelete msg}} title="Delete">{{fa-icon 'trash'}}</a>
+          <a href="#" {{action onReenqueue msg}} title="Reenqueue">{{fa-icon 'refresh'}}</a>
         </td>
       </tr>
     {{/each}}

@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'ui',
+    modulePrefix: 'hubjs-ui',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

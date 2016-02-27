@@ -20,8 +20,11 @@
         <td>{{time-duration msg.prevAt}}</td>
         <td>{{time-duration msg.nextAt}}</td>
         <td>
-          <a href="#" {{action 'delete'}}>
+          <a href="#" {{action onDelete msg}} title="Delete recurring message">
             {{fa-icon 'trash'}}
+          </a>
+          <a href="#" {{action onScheduleImmediately msg}} title="Schedule now!">
+            {{fa-icon 'bolt'}}
           </a>
         </td>
       </tr>
