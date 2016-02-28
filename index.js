@@ -16,7 +16,7 @@ class UI extends Middleware {
   *initialize() {
     var currentDir = path.join(__filename, '..')
     log.info("Building ember UI")
-    var cmd = './node_modules/ember-cli/bin/ember build -e production'
+    var cmd = './node_modules/ember-cli/bin/ember build -e production --output-path=dist/runtime'
     var options = { cwd: currentDir }
 
     try {
