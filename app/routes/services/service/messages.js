@@ -13,6 +13,9 @@ export default Ember.Route.extend({
     controller.set('messageType', messageType)
     controller.set('serviceName', serviceName)
     $.getJSON(`/api/v1/services/${serviceName}/${messageType}`)
-      .then(_ => controller.set('model', _.messages))
+      .then(_ => {
+        controller.set('model', _.messages)
+        controller.set('meta', _.meta)
+      })
   }.observes('serviceName', 'messageType', 'path.reload').on('init'),
 })

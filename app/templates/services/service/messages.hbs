@@ -1,11 +1,11 @@
 {{#if (eq messageType 'recurring')}}
-  {{recurring-messages messages=model
+  {{recurring-messages messages=model meta=meta
     onDelete=(action 'deleteRecurringMessage')
     onScheduleImmediately=(action 'scheduleImmediateRecurringMessage')
   }}
 {{/if}}
 {{#if (eq messageType 'dead')}}
-  {{dead-messages messages=model
+  {{dead-messages messages=model meta=meta
     onDelete=(action 'deleteDeadMessage')
     onReenqueue=(action 'reenqueueDeadMessage')
   }}
