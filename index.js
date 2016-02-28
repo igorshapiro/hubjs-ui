@@ -3,6 +3,8 @@
 var path = require('path')
 var send = require('koa-send')
 var mount = require('koa-mount')
+var Bluebird = require('bluebird')
+var exec = Bluebird.promisify(require('child_process').exec)
 
 class UI extends Middleware {
   constructor(options) {
@@ -12,10 +14,21 @@ class UI extends Middleware {
   }
 
   *initialize() {
-    var distDir = path.join(__filename, '../dist')
+    var currentDir = path.join(__filename, '..')
+    log.info("Building ember UI")
+    var cmd = './node_modules/ember-cli/bin/ember build -e production'
+    var options = { cwd: currentDir }
+
+    try {
+      yield exec(cmd, options)
+    }
+    catch(e) {
+      log.error(e, "Failed to compile UI. UI will not be available")
+      return
+    }
+
+    var distDir = path.join(currentDir, '/dist')
     var opts = {root: distDir}
-    // var this.webServer.app.use()
-    // var staticServe = require('koa-static')(distDir)
     var serve = require('koa-static')
     this.webServer.app.use(function*(next) {
       if (this.path === '/' || this.path.startsWith('/service')) {
@@ -26,10 +39,6 @@ class UI extends Middleware {
       }
       yield next
     })
-    // this.webServer.app.use(mount('/ui', serve(distDir)))
-    // this.webServer.app.use(mount('/assets', serve(`${distDir}/assets`)))
-    // this.webServer.app.use(mount('/fonts', serve(`${distDir}/fonts`)))
-    // console.log(distDir)
   }
 }
 
