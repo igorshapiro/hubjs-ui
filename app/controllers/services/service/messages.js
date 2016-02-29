@@ -32,6 +32,18 @@ export default Ember.Controller.extend({
         .then(this.reloadMessages.bind(this))
     },
 
+    deleteScheduledMessage(msg) {
+      return callAPI("DELETE",
+        `${this.serviceUrl()}/schedule/${msg.scheduledMessageId || msg}`)
+        .then(this.reloadMessages.bind(this))
+    },
+
+    enqueueScheduledMessage(msg) {
+      return callAPI("PUT",
+        `${this.serviceUrl()}/schedule/${msg.scheduledMessageId || msg}`)
+        .then(this.reloadMessages.bind(this))
+    },
+
     deleteDeadMessage(msg) {
       return callAPI("DELETE",
         `${this.serviceUrl()}/dead/${msg.messageId || msg}`)

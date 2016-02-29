@@ -10,3 +10,9 @@
     onReenqueue=(action 'reenqueueDeadMessage')
   }}
 {{/if}}
+{{#if (eq messageType 'schedule')}}
+  {{scheduled-messages messages=model meta=meta
+    onDelete=(action 'deleteScheduledMessage')
+    onEnqueue=(action 'enqueueScheduledMessage')
+  }}
+{{/if}}
